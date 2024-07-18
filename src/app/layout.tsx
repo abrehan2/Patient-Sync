@@ -1,4 +1,5 @@
 // IMPORTS -
+import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
@@ -8,6 +9,7 @@ const fontPoppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   style: "normal",
+  variable: "--font-poppins",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={fontPoppins.className}>{children}</body>
+      <body
+        className={cn(
+          "min-h-screen antialiased bg-dark-300",
+          fontPoppins.variable
+        )}
+      >
+        {children}
+      </body>
     </html>
   );
 }
