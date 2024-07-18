@@ -10,4 +10,7 @@ export const config = {
 
   APP_WRITE_APPOINTMENT_COLLECTION_ID:
     process.env.NEXT_APP_WRITE_APPOINTMENT_COLLECTION_ID || "",
+
+  APP_WRITE_STORAGE_BUCKET_ID:
+    process.env.NEXT_APP_WRITE_STORAGE_BUCKET_ID || "",
 };
