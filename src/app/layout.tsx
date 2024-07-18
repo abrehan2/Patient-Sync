@@ -26,7 +26,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "min-h-screen antialiased bg-dark-300",
+          "size-full antialiased bg-dark-300",
           fontPoppins.variable
         )}
       >

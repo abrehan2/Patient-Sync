@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex h-dvh overflow-hidden">
+    <div className="flex h-dvh">
       {/* TODO: OTP VERIFICATION */}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
