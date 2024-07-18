@@ -1,12 +1,11 @@
 // IMPORTS -
 import { OnboardingForm } from "@/components/forms/patient-form";
-import { config } from "@/config/config";
 import { OnboardingFormProvider } from "@/contexts/onboarding";
 import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex h-dvh">
+    <div className="flex h-dvh overflow-hidden">
       {/* TODO: OTP VERIFICATION */}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
