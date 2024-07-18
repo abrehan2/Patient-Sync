@@ -13,4 +13,6 @@ export const config = {
 
   APP_WRITE_STORAGE_BUCKET_ID:
     process.env.NEXT_APP_WRITE_STORAGE_BUCKET_ID || "",
+
+  PUBLIC_ENDPOINT: process.env.NEXT_PUBLIC_ENDPOINT || "",
 };
