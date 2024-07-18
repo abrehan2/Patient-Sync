@@ -61,7 +61,7 @@
   }
 
   .sub-container {
-    @apply mx-auto flex w-full h-screen flex-col py-10;
+    @apply mx-auto flex size-full flex-col py-10;
   }
 
   .side-img {

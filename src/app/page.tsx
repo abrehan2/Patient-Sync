@@ -1,5 +1,6 @@
 // IMPORTS -
 import { OnboardingForm } from "@/components/forms/patient-form";
+import { config } from "@/config/config";
 import { OnboardingFormProvider } from "@/contexts/onboarding";
 import Link from "next/link";
 
@@ -7,12 +8,12 @@ export default function Home() {
   return (
     <div className="flex h-full max-h-screen">
       {/* TODO: OTP VERIFICATION */}
-      <section className="remove-scrollbar h-screen container my-auto">
+      <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
           <OnboardingFormProvider>
             <OnboardingForm />
           </OnboardingFormProvider>
-          <div className="text-14-regular mt-6 flex justify-between">
+          <div className="text-14-regular mt-12 flex justify-between">
             <p className="justify-items-end xl:text-left">
               &copy; 2024 Patient Sync
             </p>
