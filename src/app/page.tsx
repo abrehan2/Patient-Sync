@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className="flex h-full max-h-screen">
       {/* TODO: OTP VERIFICATION */}
-      <section className="remove-scrollbar container my-auto">
+      <section className="remove-scrollbar h-screen container my-auto">
         <div className="sub-container max-w-[496px]">
           <OnboardingFormProvider>
             <OnboardingForm />
