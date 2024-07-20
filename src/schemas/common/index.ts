@@ -10,9 +10,12 @@ export const emailSchema = z
     message: "Please enter a valid email address.",
   });
 
-export const usernameSchema = z.string().min(2, {
-  message: "Username must be at least 2 characters.",
-});
+export const nameSchema = z
+  .string()
+  .min(5, {
+    message: "Name must be at least 5 characters.",
+  })
+  .trim();
 
 const phoneNumberRegex = /^\+?[1-9]\d{1,14}$/;
 export const phoneNumberSchema = z

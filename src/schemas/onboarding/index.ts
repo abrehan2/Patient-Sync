@@ -1,15 +1,15 @@
 // IMPORTS -
 import { z } from "zod";
-import { emailSchema, phoneNumberSchema, usernameSchema } from "../common";
+import { emailSchema, nameSchema, phoneNumberSchema } from "../common";
 
 export enum onboardingSchemaKeys {
-  USERNAME = "username",
+  FULL_NAME = "fullName",
   EMAIL = "email",
   PHONE_NUMBER = "phoneNumber",
 }
 
 export const onboardingSchema = z.object({
-  [onboardingSchemaKeys.USERNAME]: usernameSchema,
+  [onboardingSchemaKeys.FULL_NAME]: nameSchema,
   [onboardingSchemaKeys.EMAIL]: emailSchema,
   [onboardingSchemaKeys.PHONE_NUMBER]: phoneNumberSchema,
 });

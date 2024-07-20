@@ -1,19 +1,32 @@
 "use client";
 
 // IMPORTS -
+import { createUser } from "@/actions/patient";
 import { Form } from "@/components/ui/form";
 import { formFieldTypes } from "@/constants/form";
 import { useOnboardingForm } from "@/contexts/onboarding";
 import { onboardingSchema, onboardingSchemaKeys } from "@/schemas/onboarding";
+import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { CustomFormField } from "../generics/custom-form-field";
 import SubmitBtn from "../generics/submit-btn";
 
 export const OnboardingForm = () => {
   const { formHook } = useOnboardingForm();
+  const router = useRouter();
 
-  const onSubmit = (values: z.infer<typeof onboardingSchema>) => {
-    console.log(values);
+  console.log(formHook.formState.isValid);
+
+  const onSubmit = async (values: z.infer<typeof onboardingSchema>) => {
+    try {
+      const user = await createUser(values);
+
+      if (user) {
+        router.push(`/patients/${user.$id}/register`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -28,10 +41,10 @@ export const OnboardingForm = () => {
         </section>
         <CustomFormField
           control={formHook.control}
-          schemaKey={onboardingSchemaKeys.USERNAME}
+          schemaKey={onboardingSchemaKeys.FULL_NAME}
           fieldType={formFieldTypes.INPUT}
-          placeholder="abrehan_"
-          label="Username"
+          placeholder="Abdul Rehan"
+          label="Name"
         />
 
         <CustomFormField
