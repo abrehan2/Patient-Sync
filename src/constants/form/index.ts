@@ -7,3 +7,9 @@ export enum formFieldTypes {
   SELECT = "select",
   SKELETON = "skeleton",
 }
+
+export enum genderOptions {
+  MALE = "male",
+  FEMALE = "female",
+  OTHER = "other",
+}

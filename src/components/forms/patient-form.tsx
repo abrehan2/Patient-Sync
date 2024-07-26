@@ -15,8 +15,6 @@ export const OnboardingForm = () => {
   const { formHook } = useOnboardingForm();
   const router = useRouter();
 
-  console.log(formHook.formState.isValid);
-
   const onSubmit = async (values: z.infer<typeof onboardingSchema>) => {
     try {
       const user = await createUser(values);
@@ -25,7 +23,7 @@ export const OnboardingForm = () => {
         router.push(`/patients/${user.$id}/register`);
       }
     } catch (error) {
-      console.log(error);
+      console.log("ERROR: ", error);
     }
   };
 

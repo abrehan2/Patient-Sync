@@ -15,7 +15,7 @@ export const OnboardingFormProvider = ({ children }: ReactChildren) => {
   const formHook = useForm<onboardingSchemaType>({
     resolver: zodResolver(onboardingSchema),
     defaultValues: {
-      [onboardingSchemaKeys.USERNAME]: "",
+      [onboardingSchemaKeys.FULL_NAME]: "",
       [onboardingSchemaKeys.EMAIL]: "",
       [onboardingSchemaKeys.PHONE_NUMBER]: "",
     },

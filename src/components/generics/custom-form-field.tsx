@@ -44,6 +44,15 @@ const RenderField = ({
         </>
       );
 
+    case formFieldTypes.DATE_PICKER:
+      return (
+        <>
+          <div className="flex rounded-md">
+            <FormControl></FormControl>
+          </div>
+        </>
+      );
+
     default:
       break;
   }
