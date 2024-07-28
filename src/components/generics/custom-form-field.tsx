@@ -47,11 +47,14 @@ const RenderField = ({
     case formFieldTypes.DATE_PICKER:
       return (
         <>
-          <div className="flex rounded-md">
-            <FormControl></FormControl>
-          </div>
+          <FormControl>
+            <Input {...field} type="date" name={props.schemaKey} />
+          </FormControl>
         </>
       );
+
+    case formFieldTypes.SKELETON:
+      return props.renderSkeleton ? props.renderSkeleton(field) : null;
 
     default:
       break;

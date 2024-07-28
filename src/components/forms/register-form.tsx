@@ -7,7 +7,7 @@ import { Form, FormControl } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { formFieldTypes, genderOptions } from "@/constants/form";
 import { useRegisterForm } from "@/contexts/register";
-import { onboardingSchema, onboardingSchemaKeys } from "@/schemas/onboarding";
+import { registerSchema, registerSchemaKeys } from "@/schemas/register";
 import { User } from "@/types/common";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
@@ -20,7 +20,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
 
   console.log(formHook);
 
-  const onSubmit = async (values: z.infer<typeof onboardingSchema>) => {
+  const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
       const user = await createUser(values);
 
@@ -50,16 +50,16 @@ export const RegisterForm = ({ user }: { user: User }) => {
         </section>
         <CustomFormField
           control={formHook.control}
-          schemaKey={onboardingSchemaKeys.FULL_NAME}
+          schemaKey={registerSchemaKeys.FULL_NAME}
           fieldType={formFieldTypes.INPUT}
           placeholder="Abdul Rehan"
-          label="Full Name"
+          label="Name"
         />
 
         <div className="flex flex-col gap-6 xl:flex-row xl:justify-between">
           <CustomFormField
             control={formHook.control}
-            schemaKey={onboardingSchemaKeys.EMAIL}
+            schemaKey={registerSchemaKeys.EMAIL}
             fieldType={formFieldTypes.INPUT}
             placeholder="rehannajam2@gmail.com"
             label="Email"
@@ -67,7 +67,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
 
           <CustomFormField
             control={formHook.control}
-            schemaKey={onboardingSchemaKeys.PHONE_NUMBER}
+            schemaKey={registerSchemaKeys.PHONE_NUMBER}
             fieldType={formFieldTypes.PHONE_INPUT}
             placeholder="+1234567890"
             label="Phone Number"
@@ -77,14 +77,14 @@ export const RegisterForm = ({ user }: { user: User }) => {
         <div className="flex flex-col gap-6 xl:flex-row xl:justify-between">
           <CustomFormField
             control={formHook.control}
-            schemaKey={onboardingSchemaKeys.EMAIL}
+            schemaKey={registerSchemaKeys.BIRTH}
             fieldType={formFieldTypes.DATE_PICKER}
             label="Date of Birth"
           />
 
           <CustomFormField
             control={formHook.control}
-            schemaKey={onboardingSchemaKeys.PHONE_NUMBER}
+            schemaKey={registerSchemaKeys.BIRTH}
             fieldType={formFieldTypes.SKELETON}
             placeholder="+1234567890"
             label="Gender"
@@ -98,7 +98,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
                   {Object.values(genderOptions).map((option) => (
                     <div className="radio-group" key={option}>
                       <RadioGroupItem value={option} id={option} />
-                      <Label htmlFor={option} className="cursor-point">
+                      <Label htmlFor={option} className="cursor-pointer">
                         {option}
                       </Label>
                     </div>

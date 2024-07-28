@@ -4,6 +4,7 @@ import {
   onboardingSchemaKeys,
   onboardingSchemaType,
 } from "@/schemas/onboarding";
+import { registerSchemaKeys, registerSchemaType } from "@/schemas/register";
 import { Control } from "react-hook-form";
 
 export type ReactChildren = {
@@ -11,9 +12,9 @@ export type ReactChildren = {
 };
 
 export type customFormProps = {
-  control: Control<onboardingSchemaType>;
+  control: Control<any>;
   label?: string;
-  schemaKey: onboardingSchemaKeys;
+  schemaKey: onboardingSchemaKeys | registerSchemaKeys;
   fieldType: formFieldTypes;
   disabled?: boolean;
   placeholder?: string;

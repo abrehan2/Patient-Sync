@@ -18,6 +18,8 @@ export const RegisterFormProvider = ({ children }: ReactChildren) => {
       [registerSchemaKeys.FULL_NAME]: "",
       [registerSchemaKeys.EMAIL]: "",
       [registerSchemaKeys.PHONE_NUMBER]: "",
+      [registerSchemaKeys.BIRTH]: "",
+      [registerSchemaKeys.GENDER]: "",
     },
     mode: "onChange",
   });
