@@ -2,23 +2,28 @@
 
 // IMPORTS -
 import { createUser } from "@/actions/patient";
+import { CustomFormField } from "@/components/generics/custom-form-field";
+import FileUpload from "@/components/generics/file-upload";
 import SubmitBtn from "@/components/generics/submit-btn";
 import { Form, FormControl } from "@/components/ui/form";
+import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { formFieldTypes, genderOptions } from "@/constants/form";
+import { SelectItem } from "@/components/ui/select";
+import {
+  Doctors,
+  formFieldTypes,
+  genderOptions,
+  identificationTypes,
+} from "@/constants/form";
 import { useRegisterForm } from "@/contexts/register";
 import { registerSchema, registerSchemaKeys } from "@/schemas/register";
 import { User } from "@/types/common";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
-import { CustomFormField } from "../generics/custom-form-field";
-import { Label } from "../ui/label";
 
 export const RegisterForm = ({ user }: { user: User }) => {
   const { formHook } = useRegisterForm();
   const router = useRouter();
-
-  console.log(formHook);
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
@@ -44,7 +49,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
         </section>
 
         <section className="space-y-6">
-          <div className="mb-9 space-y-1">
+          <div className="mb-6 space-y-1">
             <h2 className="text-slate-500 sub-header">Personal Information</h2>
           </div>
         </section>
@@ -84,7 +89,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
 
           <CustomFormField
             control={formHook.control}
-            schemaKey={registerSchemaKeys.BIRTH}
+            schemaKey={registerSchemaKeys.GENDER}
             fieldType={formFieldTypes.SKELETON}
             placeholder="+1234567890"
             label="Gender"
@@ -108,6 +113,102 @@ export const RegisterForm = ({ user }: { user: User }) => {
             )}
           />
         </div>
+
+        <div className="flex flex-col gap-6 xl:flex-row xl:justify-between">
+          <CustomFormField
+            control={formHook.control}
+            schemaKey={registerSchemaKeys.ADDRESS}
+            fieldType={formFieldTypes.INPUT}
+            placeholder="F-10/4, Islamabad"
+            label="Address"
+          />
+
+          <CustomFormField
+            control={formHook.control}
+            schemaKey={registerSchemaKeys.OCCUPATION}
+            fieldType={formFieldTypes.INPUT}
+            placeholder="Software Engineer"
+            label="Occupation"
+          />
+        </div>
+
+        <section className="space-y-6">
+          <div className="mb-6 space-y-1">
+            <h2 className="text-slate-500 sub-header">Medical Information</h2>
+          </div>
+        </section>
+        <CustomFormField
+          control={formHook.control}
+          schemaKey={registerSchemaKeys.PRIMARY_PHYSICIAN}
+          fieldType={formFieldTypes.SELECT}
+          placeholder="Select a physician"
+          label="Primary Physician"
+        >
+          {Object.values(Doctors).map((doctor) => (
+            <SelectItem key={doctor} value={doctor}>
+              {doctor}
+            </SelectItem>
+          ))}
+        </CustomFormField>
+
+        <div className="flex flex-col gap-6 xl:flex-row xl:justify-between">
+          <CustomFormField
+            control={formHook.control}
+            schemaKey={registerSchemaKeys.ALLERGIES}
+            fieldType={formFieldTypes.TEXTAREA}
+            placeholder="Pollen, Penicillin, etc."
+            label="Allergies (if any)"
+          />
+
+          <CustomFormField
+            control={formHook.control}
+            schemaKey={registerSchemaKeys.CURRENT_MEDICATION}
+            fieldType={formFieldTypes.TEXTAREA}
+            placeholder="Aspirin, etc."
+            label="Current medication (if any)"
+          />
+        </div>
+        <section className="space-y-6">
+          <div className="mb-6 space-y-1">
+            <h2 className="text-slate-500 sub-header">
+              Identification and Verification
+            </h2>
+          </div>
+        </section>
+
+        <CustomFormField
+          control={formHook.control}
+          schemaKey={registerSchemaKeys.IDENTIFICATION_TYPE}
+          fieldType={formFieldTypes.SELECT}
+          placeholder="Select an identification type"
+          label="Identification Type"
+        >
+          {Object.values(identificationTypes).map((type) => (
+            <SelectItem key={type} value={type}>
+              {type}
+            </SelectItem>
+          ))}
+        </CustomFormField>
+
+        <CustomFormField
+          control={formHook.control}
+          schemaKey={registerSchemaKeys.IDENTIFICATION_NUMBER}
+          fieldType={formFieldTypes.INPUT}
+          placeholder="1234567890"
+          label="Identification Number"
+        />
+
+        <CustomFormField
+          control={formHook.control}
+          schemaKey={registerSchemaKeys.IDENTIFICATION_DOCUMENT}
+          fieldType={formFieldTypes.SKELETON}
+          label="Scanned copy of identification document"
+          renderSkeleton={(field) => (
+            <FormControl>
+              <FileUpload files={field.value} onChange={field.onChange} />
+            </FormControl>
+          )}
+        />
 
         <SubmitBtn isValid={!formHook.formState.isValid}>Submit</SubmitBtn>
       </form>

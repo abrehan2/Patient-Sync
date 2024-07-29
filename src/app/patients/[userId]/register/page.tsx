@@ -1,10 +1,8 @@
 // IMPORTS -
 import { getUser } from "@/actions/patient";
 import { RegisterForm } from "@/components/forms/register-form";
-import { OnboardingFormProvider } from "@/contexts/onboarding";
 import { RegisterFormProvider } from "@/contexts/register";
 import { SearchParamProps } from "@/types/common";
-import Link from "next/link";
 
 const Page = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);

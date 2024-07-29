@@ -13,3 +13,16 @@ export enum genderOptions {
   FEMALE = "female",
   OTHER = "other",
 }
+
+export enum Doctors {
+  DR_JOHN = "Dr. John",
+  DR_JANE = "Dr. Jane",
+  DR_JAMES = "Dr. James",
+}
+
+export enum identificationTypes {
+  BIRTH_CERTIFICATE = "Birth Certificate",
+  PASSPORT = "Passport",
+  DRIVER_LICENSE = "Driver License",
+  CNIC = "CNIC",
+}

@@ -7,8 +7,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
 import { formFieldTypes } from "@/constants/form";
 import { customFormProps } from "@/types/common";
+import { Checkbox } from "@/components/ui/checkbox";
 
 const RenderField = ({
   field,
@@ -56,6 +64,27 @@ const RenderField = ({
     case formFieldTypes.SKELETON:
       return props.renderSkeleton ? props.renderSkeleton(field) : null;
 
+    case formFieldTypes.SELECT:
+      return (
+        <FormControl>
+          <Select onValueChange={field.onChange} defaultValue={field.value}>
+            <SelectTrigger>
+              <SelectValue placeholder={props.placeholder} />
+            </SelectTrigger>
+            <SelectContent className="bg-slate-50">
+              {props.children}
+            </SelectContent>
+          </Select>
+        </FormControl>
+      );
+
+    case formFieldTypes.TEXTAREA:
+      return (
+        <FormControl>
+          <Textarea placeholder={props.placeholder} {...field} />
+        </FormControl>
+      );
+
     default:
       break;
   }
@@ -70,13 +99,8 @@ export const CustomFormField: React.FC<customFormProps> = (props) => {
       name={schemaKey}
       render={({ field }) => (
         <FormItem>
-          {fieldType !== formFieldTypes.CHECKBOX && (
-            <>
-              <FormLabel className="capitalize">{props.label}</FormLabel>
-              <RenderField field={field} props={props} />
-              <FormMessage className="shad-error" />
-            </>
-          )}
+          <FormLabel className="capitalize">{props.label}</FormLabel>
+          <RenderField field={field} props={props} />
         </FormItem>
       )}
     />

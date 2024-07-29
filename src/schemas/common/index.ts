@@ -1,4 +1,5 @@
 // IMPORTS -
+import { genderOptions, identificationTypes } from "@/constants/form";
 import { z } from "zod";
 
 export const emailSchema = z
@@ -23,3 +24,29 @@ export const phoneNumberSchema = z
   .refine((val) => phoneNumberRegex.test(val), {
     message: "Please enter a valid phone number.",
   });
+
+export const imageSchema = z.string().nullable();
+
+export const birthSchema = z.string().refine(
+  (date) => {
+    const birth = new Date(date);
+    const now = new Date();
+    return birth < now;
+  },
+  {
+    message: "Date of birth must be in the past",
+  }
+);
+
+export const genderSchema = z.enum([
+  genderOptions.MALE,
+  genderOptions.FEMALE,
+  genderOptions.OTHER,
+]);
+
+export const identificationTypeSchema = z.enum([
+  identificationTypes.BIRTH_CERTIFICATE,
+  identificationTypes.CNIC,
+  identificationTypes.DRIVER_LICENSE,
+  identificationTypes.PASSPORT,
+]);
