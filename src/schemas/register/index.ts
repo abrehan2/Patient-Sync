@@ -2,10 +2,10 @@
 import { z } from "zod";
 import {
   birthSchema,
+  documentSchema,
   emailSchema,
   genderSchema,
   identificationTypeSchema,
-  imageSchema,
   nameSchema,
   phoneNumberSchema,
 } from "../common";
@@ -43,7 +43,7 @@ export const registerSchema = z.object({
   [registerSchemaKeys.IDENTIFICATION_NUMBER]: z
     .string()
     .min(1, "Identification number is required"),
-  [registerSchemaKeys.IDENTIFICATION_DOCUMENT]: imageSchema,
+  [registerSchemaKeys.IDENTIFICATION_DOCUMENT]: documentSchema,
 });
 
 export type registerSchemaType = z.infer<typeof registerSchema>;

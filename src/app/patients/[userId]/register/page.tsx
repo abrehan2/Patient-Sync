@@ -10,19 +10,12 @@ const Page = async ({ params: { userId } }: SearchParamProps) => {
   return (
     <div className="flex h-dvh">
       {/* TODO: OTP VERIFICATION */}
-      <section className="remove-scrollbar container my-auto">
-        <div className="sub-container max-w-[496px]">
+      <section className="remove-scrollbar container">
+        <div className="sub-container max-w-[500px]">
           <RegisterFormProvider>
             <RegisterForm user={user} />
           </RegisterFormProvider>
-          {/* <div className="text-14-regular mt-12 flex justify-between">
-            <p className="justify-items-end xl:text-left">
-              &copy; 2024 Patient Sync
-            </p>
-            <Link href={"/?admin=true"} className="text-green-500">
-              Admin
-            </Link>
-          </div> */}
+          <p className="copyright py-12">&copy; 2024 Patient Sync</p>
         </div>
       </section>
     </div>

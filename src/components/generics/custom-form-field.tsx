@@ -16,7 +16,6 @@ import {
 import { Textarea } from "@/components/ui/textarea";
 import { formFieldTypes } from "@/constants/form";
 import { customFormProps } from "@/types/common";
-import { Checkbox } from "@/components/ui/checkbox";
 
 const RenderField = ({
   field,
@@ -80,9 +79,11 @@ const RenderField = ({
 
     case formFieldTypes.TEXTAREA:
       return (
-        <FormControl>
-          <Textarea placeholder={props.placeholder} {...field} />
-        </FormControl>
+        <>
+          <FormControl>
+            <Textarea placeholder={props.placeholder} {...field} />
+          </FormControl>
+        </>
       );
 
     default:
@@ -91,18 +92,21 @@ const RenderField = ({
 };
 
 export const CustomFormField: React.FC<customFormProps> = (props) => {
-  const { control, schemaKey, fieldType } = props;
+  const { control, schemaKey } = props;
 
   return (
-    <FormField
-      control={control}
-      name={schemaKey}
-      render={({ field }) => (
-        <FormItem>
-          <FormLabel className="capitalize">{props.label}</FormLabel>
-          <RenderField field={field} props={props} />
-        </FormItem>
-      )}
-    />
+    <>
+      <FormField
+        control={control}
+        name={schemaKey}
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel className="capitalize">{props.label}</FormLabel>
+            <RenderField field={field} props={props} />
+          </FormItem>
+        )}
+      />
+      <FormMessage id={schemaKey} />
+    </>
   );
 };

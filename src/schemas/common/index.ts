@@ -25,7 +25,14 @@ export const phoneNumberSchema = z
     message: "Please enter a valid phone number.",
   });
 
-export const imageSchema = z.string().nullable();
+export const documentSchema = z.custom<File[]>().refine(
+  (data) => {
+    return data?.length > 0;
+  },
+  {
+    message: "Identification document is required.",
+  }
+);
 
 export const birthSchema = z.string().refine(
   (date) => {

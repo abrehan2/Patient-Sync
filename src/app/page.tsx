@@ -12,7 +12,7 @@ export default function Home() {
           <OnboardingFormProvider>
             <OnboardingForm />
           </OnboardingFormProvider>
-          <div className="text-14-regular mt-12 flex justify-between">
+          <div className="text-14-regular py-12 flex justify-between">
             <p className="justify-items-end xl:text-left">
               &copy; 2024 Patient Sync
             </p>

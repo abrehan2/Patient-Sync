@@ -69,7 +69,7 @@
   }
 
   .copyright {
-    @apply text-14-regular justify-items-end text-center text-dark-600 xl:text-left;
+    @apply text-14-regular justify-items-end text-center xl:text-left;
   }
 
   /* ==== SUCCESS */

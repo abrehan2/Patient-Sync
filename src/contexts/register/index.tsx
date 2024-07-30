@@ -27,7 +27,7 @@ export const RegisterFormProvider = ({ children }: ReactChildren) => {
       [registerSchemaKeys.CURRENT_MEDICATION]: "",
       [registerSchemaKeys.IDENTIFICATION_TYPE]: undefined,
       [registerSchemaKeys.IDENTIFICATION_NUMBER]: "",
-      [registerSchemaKeys.IDENTIFICATION_DOCUMENT]: "",
+      [registerSchemaKeys.IDENTIFICATION_DOCUMENT]: undefined,
     },
     mode: "onChange",
   });

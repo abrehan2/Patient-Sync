@@ -1,7 +1,7 @@
 "use client";
 
 // IMPORTS -
-import { createUser } from "@/actions/patient";
+import { createUser, registerPatient } from "@/actions/patient";
 import { CustomFormField } from "@/components/generics/custom-form-field";
 import FileUpload from "@/components/generics/file-upload";
 import SubmitBtn from "@/components/generics/submit-btn";
@@ -16,6 +16,7 @@ import {
   identificationTypes,
 } from "@/constants/form";
 import { useRegisterForm } from "@/contexts/register";
+import { convertBufferToBlob } from "@/lib/utils";
 import { registerSchema, registerSchemaKeys } from "@/schemas/register";
 import { User } from "@/types/common";
 import { useRouter } from "next/navigation";
@@ -27,15 +28,49 @@ export const RegisterForm = ({ user }: { user: User }) => {
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
-      const user = await createUser(values);
+      let formData = new FormData();
 
-      if (user) {
-        router.push(`/patients/${user.$id}/register`);
+      if (
+        values[registerSchemaKeys.IDENTIFICATION_DOCUMENT] &&
+        values[registerSchemaKeys.IDENTIFICATION_DOCUMENT].length > 0
+      ) {
+        const blob = convertBufferToBlob(
+          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0],
+          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].type
+        );
+
+        formData.append(registerSchemaKeys.IDENTIFICATION_DOCUMENT, blob);
+        formData.append(
+          registerSchemaKeys.IDENTIFICATION_TYPE,
+          values[registerSchemaKeys.IDENTIFICATION_TYPE]
+        );
+
+        formData.append(
+          "fileName",
+          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].name
+        );
       }
+
+      const patientData = {
+        ...values,
+        userId: user.$id,
+
+        identificationDocument: formData,
+      };
+
+      const patient = await registerPatient(patientData);
+
+      console.log(patient);
+
+      // if (patient) {
+      //   router.push(`/patients/${user.$id}/appointment`);
+      // }
     } catch (error) {
       console.log("ERROR: ", error);
     }
   };
+
+  console.log(formHook.formState);
 
   return (
     <Form {...formHook}>
