@@ -103,10 +103,10 @@ export const CustomFormField: React.FC<customFormProps> = (props) => {
           <FormItem>
             <FormLabel className="capitalize">{props.label}</FormLabel>
             <RenderField field={field} props={props} />
+            <FormMessage id={schemaKey} />
           </FormItem>
         )}
       />
-      <FormMessage id={schemaKey} />
     </>
   );
 };

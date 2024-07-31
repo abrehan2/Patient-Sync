@@ -7,6 +7,7 @@ import { formFieldTypes } from "@/constants/form";
 import { useOnboardingForm } from "@/contexts/onboarding";
 import { onboardingSchema, onboardingSchemaKeys } from "@/schemas/onboarding";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { z } from "zod";
 import { CustomFormField } from "../generics/custom-form-field";
 import SubmitBtn from "../generics/submit-btn";
@@ -23,7 +24,8 @@ export const OnboardingForm = () => {
         router.push(`/patients/${user.$id}/register`);
       }
     } catch (error) {
-      console.log("ERROR: ", error);
+      // console.log("ERROR: ", error);
+      toast.error("An error occurred. Please try again.");
     }
   };
 

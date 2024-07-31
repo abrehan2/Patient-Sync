@@ -1,7 +1,7 @@
 "use client";
 
 // IMPORTS -
-import { createUser, registerPatient } from "@/actions/patient";
+import { registerPatient } from "@/actions/patient";
 import { CustomFormField } from "@/components/generics/custom-form-field";
 import FileUpload from "@/components/generics/file-upload";
 import SubmitBtn from "@/components/generics/submit-btn";
@@ -20,6 +20,7 @@ import { convertBufferToBlob } from "@/lib/utils";
 import { registerSchema, registerSchemaKeys } from "@/schemas/register";
 import { User } from "@/types/common";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 import { z } from "zod";
 
 export const RegisterForm = ({ user }: { user: User }) => {
@@ -60,17 +61,14 @@ export const RegisterForm = ({ user }: { user: User }) => {
 
       const patient = await registerPatient(patientData);
 
-      console.log(patient);
-
-      // if (patient) {
-      //   router.push(`/patients/${user.$id}/appointment`);
-      // }
+      if (patient) {
+        router.push(`/patients/${user.$id}/appointment`);
+      }
     } catch (error) {
-      console.log("ERROR: ", error);
+      // console.log("ERROR: ", error);
+      toast.error("An error occurred. Please try again.");
     }
   };
-
-  console.log(formHook.formState);
 
   return (
     <Form {...formHook}>
