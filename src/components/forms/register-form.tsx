@@ -62,10 +62,10 @@ export const RegisterForm = ({ user }: { user: User }) => {
       const patient = await registerPatient(patientData);
 
       if (patient) {
+        toast.success("Patient registered successfully.");
         router.push(`/patients/${user.$id}/appointment`);
       }
     } catch (error) {
-      // console.log("ERROR: ", error);
       toast.error("An error occurred. Please try again.");
     }
   };

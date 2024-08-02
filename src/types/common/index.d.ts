@@ -1,5 +1,6 @@
 // IMPORTS -
 import { formFieldTypes } from "@/constants/form";
+import { appointmentSchemaKeys } from "@/schemas/appointment";
 import {
   onboardingSchemaKeys,
   onboardingSchemaType,
@@ -7,24 +8,23 @@ import {
 import { registerSchemaKeys, registerSchemaType } from "@/schemas/register";
 import { Control } from "react-hook-form";
 
-export type ReactChildren = {
+declare type ReactChildren = {
   children: React.ReactNode;
 };
 
-export type customFormProps = {
+declare type customFormProps = {
   control: Control<any>;
   label?: string;
-  schemaKey: onboardingSchemaKeys | registerSchemaKeys;
+  schemaKey: onboardingSchemaKeys | registerSchemaKeys | appointmentSchemaKeys;
   fieldType: formFieldTypes;
   disabled?: boolean;
   placeholder?: string;
   dateFormat?: string;
-  showTimeSelect?: boolean;
   children?: React.ReactNode;
   renderSkeleton?: (field: any) => React.ReactNode;
 };
 
-export type buttonProps = {
+declare type buttonProps = {
   isValid: boolean;
   className?: string;
   children: React.ReactNode;

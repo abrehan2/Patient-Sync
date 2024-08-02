@@ -57,3 +57,14 @@ export const identificationTypeSchema = z.enum([
   identificationTypes.DRIVER_LICENSE,
   identificationTypes.PASSPORT,
 ]);
+
+export const appointmentDateSchema = z.string().refine(
+  (date) => {
+    const day = new Date(date);
+    const now = new Date();
+    return day > now;
+  },
+  {
+    message: "Appointment date must be in the future.",
+  }
+);

@@ -21,10 +21,10 @@ export const OnboardingForm = () => {
       const user = await createUser(values);
 
       if (user) {
+        toast.success("Patient onboarded successfully.");
         router.push(`/patients/${user.$id}/register`);
       }
     } catch (error) {
-      // console.log("ERROR: ", error);
       toast.error("An error occurred. Please try again.");
     }
   };

@@ -26,3 +26,9 @@ export enum identificationTypes {
   DRIVER_LICENSE = "Driver License",
   CNIC = "CNIC",
 }
+
+export enum appointmentStatus {
+  CANCEL = "cancel",
+  CREATE = "create",
+  SCHEDULE = "schedule",
+}
