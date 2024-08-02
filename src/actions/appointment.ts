@@ -4,9 +4,10 @@
 import { databases } from "@/config/appwrite.config";
 import { config } from "@/config/config";
 import { parseStringify } from "@/lib/utils";
+import { appointmentProps } from "@/types/actions/appointment";
 import { ID } from "node-appwrite";
 
-export const createAppointment = async (appointment: any) => {
+export const createAppointment = async (appointment: appointmentProps) => {
   try {
     const newAppointment = await databases.createDocument(
       config.APP_WRITE_DB_ID,

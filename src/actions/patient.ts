@@ -5,7 +5,6 @@ import { databases, storage, users } from "@/config/appwrite.config";
 import { config } from "@/config/config";
 import { parseStringify } from "@/lib/utils";
 import { registerSchemaKeys } from "@/schemas/register";
-import { CreateUserParams, RegisterUserParams } from "@/types/actions/patient";
 import { ID, Query } from "node-appwrite";
 import { InputFile } from "node-appwrite/file";
 

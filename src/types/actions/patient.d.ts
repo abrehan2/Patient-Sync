@@ -1,10 +1,10 @@
-export interface CreateUserParams {
+declare interface CreateUserParams {
   fullName: string;
   email: string;
   phoneNumber: string;
 }
 
-export interface RegisterUserParams extends CreateUserParams {
+declare interface RegisterUserParams extends CreateUserParams {
   userId: string;
   birth: string;
   gender: Gender;

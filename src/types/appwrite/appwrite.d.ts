@@ -1,7 +1,7 @@
 // IMPORTS -
 import { Models } from "node-appwrite";
 
-export interface Patient extends Models.Document {
+declare interface Patient extends Models.Document {
   userId: string;
   fullName: string;
   email: string;
@@ -18,7 +18,7 @@ export interface Patient extends Models.Document {
   identificationDocument: FormData;
 }
 
-export interface Appointment extends Models.Document {
+declare interface Appointment extends Models.Document {
   patient: Patient;
   schedule: Date;
   status: Status;

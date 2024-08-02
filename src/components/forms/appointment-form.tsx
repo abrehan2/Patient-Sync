@@ -46,7 +46,7 @@ export const AppointmentForm = ({
         const appointmentData = {
           userId,
           patient: patientId,
-          status,
+          status: status as appointmentStatus,
           ...values,
         };
         const appointment = await createAppointment(appointmentData);
@@ -55,7 +55,7 @@ export const AppointmentForm = ({
           formHook.reset();
           toast.success("Appointment created successfully.");
           router.push(
-            `/patients/${userId}/appointments/success?appointmentId=${appointment.$id}`
+            `/patients/${userId}/appointment/success?appointmentId=${appointment.$id}`
           );
         }
       }
