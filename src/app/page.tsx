@@ -1,12 +1,16 @@
 // IMPORTS -
 import { OnboardingForm } from "@/components/forms/patient-form";
+import { PassKeyModal } from "@/components/generics/pass-key-modal";
 import { OnboardingFormProvider } from "@/contexts/onboarding";
+import { SearchParamProps } from "@/types/common";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({ searchParams }: SearchParamProps) {
+  const isAdmin = !!searchParams.admin;
+
   return (
     <div className="flex h-dvh">
-      {/* TODO: OTP VERIFICATION */}
+      {isAdmin && <PassKeyModal />}
       <section className="remove-scrollbar container my-auto">
         <div className="sub-container max-w-[496px]">
           <OnboardingFormProvider>

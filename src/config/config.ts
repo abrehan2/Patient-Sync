@@ -15,4 +15,5 @@ export const config = {
     process.env.NEXT_APP_WRITE_STORAGE_BUCKET_ID || "",
 
   PUBLIC_ENDPOINT: process.env.NEXT_PUBLIC_ENDPOINT || "",
+  ADMIN_PASS_KEY: process.env.NEXT_ADMIN_PASS_KEY || "",
 };

@@ -17,3 +17,13 @@ export const convertFileToUrl = (file: File) => URL.createObjectURL(file);
 export const convertBufferToBlob = (buffer: File, type: any) => {
   return new Blob([buffer], { type });
 };
+
+// ENCRYPT KEY -
+export function encryptKey(passkey: string) {
+  return btoa(passkey);
+}
+
+// DECRYPT KEY -
+export function decryptKey(passkey: string) {
+  return atob(passkey);
+}
