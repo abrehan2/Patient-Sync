@@ -1,15 +1,14 @@
 // IMPORTS -
-import { getUser } from "@/actions/patient";
-import { RegisterForm } from "@/components/forms/register-form";
-import { RegisterFormProvider } from "@/contexts/register";
-import { SearchParamProps } from "@/types/common";
+import { getUser } from '@/actions/patient'
+import { RegisterForm } from '@/components/forms/register-form'
+import { RegisterFormProvider } from '@/contexts/register'
+import { SearchParamProps } from '@/types/common'
 
 const Page = async ({ params: { userId } }: SearchParamProps) => {
-  const user = await getUser(userId);
+  const user = await getUser(userId)
 
   return (
     <div className="flex h-dvh">
-      {/* TODO: OTP VERIFICATION */}
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[500px]">
           <RegisterFormProvider>
@@ -19,7 +18,7 @@ const Page = async ({ params: { userId } }: SearchParamProps) => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

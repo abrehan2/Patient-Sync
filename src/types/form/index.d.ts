@@ -1,5 +1,5 @@
 declare type appointmentFormProps = {
-  userId: string;
-  patientId: string;
-  type: "cancel" | "create" | "schedule";
-};
+  userId: string
+  patientId: string
+  type: 'cancel' | 'create' | 'schedule'
+}

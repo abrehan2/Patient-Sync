@@ -1,13 +1,13 @@
 // IMPORTS -
-import { appointmentStatus } from "@/constants/form";
+import { appointmentStatus } from '@/constants/form'
 
 declare type appointmentProps = {
-  userId: string;
-  patient: string;
-  status: appointmentStatus;
-  doctor: string;
-  appointmentReason: string;
-  additionalComment?: string;
-  appointmentDate: string;
-  cancelReason?: string;
-};
+  userId: string
+  patientId: string
+  status: appointmentStatus
+  doctor: string
+  appointmentReason: string
+  additionalComment?: string
+  appointmentDate: string
+  cancelReason?: string
+}

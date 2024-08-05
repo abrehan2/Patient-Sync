@@ -1,20 +1,20 @@
-"use client";
+'use client'
 
 // IMPORTS -
-import { convertFileToUrl } from "@/lib/utils";
-import { FileUploadProps } from "@/types/common";
-import Image from "next/image";
-import { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import { convertFileToUrl } from '@/lib/utils'
+import { FileUploadProps } from '@/types/common'
+import Image from 'next/image'
+import { useCallback } from 'react'
+import { useDropzone } from 'react-dropzone'
 
 const FileUpload = ({ files, onChange }: FileUploadProps) => {
   const onDrop = useCallback(
     (acceptedFiles: File[]) => {
-      onChange(acceptedFiles);
+      onChange(acceptedFiles)
     },
-    [onChange]
-  );
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+    [onChange],
+  )
+  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
     <div {...getRootProps()} className="file-upload bg-slate-50">
@@ -38,7 +38,7 @@ const FileUpload = ({ files, onChange }: FileUploadProps) => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default FileUpload;
+export default FileUpload

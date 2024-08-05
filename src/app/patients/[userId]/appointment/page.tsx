@@ -1,12 +1,12 @@
 // IMPORTS -
-import { getPatient } from "@/actions/patient";
-import { AppointmentForm } from "@/components/forms/appointment-form";
-import { appointmentStatus } from "@/constants/form";
-import { AppointmentFormProvider } from "@/contexts/appointment";
-import { SearchParamProps } from "@/types/common";
+import { getPatient } from '@/actions/patient'
+import { AppointmentForm } from '@/components/forms/appointment-form'
+import { appointmentStatus } from '@/constants/form'
+import { AppointmentFormProvider } from '@/contexts/appointment'
+import { SearchParamProps } from '@/types/common'
 
 const Page = async ({ params: { userId } }: SearchParamProps) => {
-  const patient = await getPatient(userId);
+  const patient = await getPatient(userId)
 
   return (
     <div className="flex h-dvh">
@@ -23,7 +23,7 @@ const Page = async ({ params: { userId } }: SearchParamProps) => {
         </div>
       </section>
     </div>
-  );
-};
+  )
+}
 
-export default Page;
+export default Page

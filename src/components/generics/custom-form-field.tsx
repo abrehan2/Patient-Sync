@@ -1,55 +1,30 @@
 // IMPORTS -
-import {
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Textarea } from "@/components/ui/textarea";
-import { formFieldTypes } from "@/constants/form";
-import { customFormProps } from "@/types/common";
+import { FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
+import { Input } from '@/components/ui/input'
+import { Select, SelectContent, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { Textarea } from '@/components/ui/textarea'
+import { formFieldTypes } from '@/constants/form'
+import { customFormProps } from '@/types/common'
 
-const RenderField = ({
-  field,
-  props,
-}: {
-  field: any;
-  props: customFormProps;
-}) => {
+const RenderField = ({ field, props }: { field: any; props: customFormProps }) => {
   switch (props.fieldType) {
     case formFieldTypes.INPUT:
       return (
         <>
           <FormControl>
-            <Input
-              {...field}
-              placeholder={props.placeholder}
-              name={props.schemaKey}
-            />
+            <Input {...field} placeholder={props.placeholder} name={props.schemaKey} />
           </FormControl>
         </>
-      );
+      )
 
     case formFieldTypes.PHONE_INPUT:
       return (
         <>
           <FormControl>
-            <Input
-              {...field}
-              placeholder={props.placeholder}
-              name={props.schemaKey}
-            />
+            <Input {...field} placeholder={props.placeholder} name={props.schemaKey} />
           </FormControl>
         </>
-      );
+      )
 
     case formFieldTypes.DATE_PICKER:
       return (
@@ -58,10 +33,10 @@ const RenderField = ({
             <Input {...field} type="date" name={props.schemaKey} />
           </FormControl>
         </>
-      );
+      )
 
     case formFieldTypes.SKELETON:
-      return props.renderSkeleton ? props.renderSkeleton(field) : null;
+      return props.renderSkeleton ? props.renderSkeleton(field) : null
 
     case formFieldTypes.SELECT:
       return (
@@ -70,12 +45,10 @@ const RenderField = ({
             <SelectTrigger>
               <SelectValue placeholder={props.placeholder} />
             </SelectTrigger>
-            <SelectContent className="bg-slate-50">
-              {props.children}
-            </SelectContent>
+            <SelectContent className="bg-slate-50">{props.children}</SelectContent>
           </Select>
         </FormControl>
-      );
+      )
 
     case formFieldTypes.TEXTAREA:
       return (
@@ -84,15 +57,15 @@ const RenderField = ({
             <Textarea placeholder={props.placeholder} {...field} />
           </FormControl>
         </>
-      );
+      )
 
     default:
-      break;
+      break
   }
-};
+}
 
 export const CustomFormField: React.FC<customFormProps> = (props) => {
-  const { control, schemaKey } = props;
+  const { control, schemaKey } = props
 
   return (
     <>
@@ -108,5 +81,5 @@ export const CustomFormField: React.FC<customFormProps> = (props) => {
         )}
       />
     </>
-  );
-};
+  )
+}

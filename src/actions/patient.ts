@@ -1,12 +1,12 @@
-"use server";
+'use server'
 
 // IMPORTS -
-import { databases, storage, users } from "@/config/appwrite.config";
-import { config } from "@/config/config";
-import { parseStringify } from "@/lib/utils";
-import { registerSchemaKeys } from "@/schemas/register";
-import { ID, Query } from "node-appwrite";
-import { InputFile } from "node-appwrite/file";
+import { databases, storage, users } from '@/config/appwrite.config'
+import { config } from '@/config/config'
+import { parseStringify } from '@/lib/utils'
+import { registerSchemaKeys } from '@/schemas/register'
+import { ID, Query } from 'node-appwrite'
+import { InputFile } from 'node-appwrite/file'
 
 export const createUser = async (user: CreateUserParams) => {
   try {
@@ -15,53 +15,44 @@ export const createUser = async (user: CreateUserParams) => {
       user.email,
       user.phoneNumber,
       undefined,
-      user.fullName
-    );
+      user.fullName,
+    )
 
-    return parseStringify(newUser);
+    return parseStringify(newUser)
   } catch (error: any) {
     if (error && error?.code === 409) {
-      const documents = await users.list([Query.equal("email", [user.email])]);
+      const documents = await users.list([Query.equal('email', [user.email])])
 
-      return documents.users[0];
+      return documents.users[0]
     }
-    console.error("An error occurred while creating a new user:", error);
+    console.error('An error occurred while creating a new user:', error)
   }
-};
+}
 
 export const getUser = async (userId: string) => {
   try {
-    const user = await users.get(userId);
+    const user = await users.get(userId)
 
-    return parseStringify(user);
+    return parseStringify(user)
   } catch (error: any) {
-    console.error(
-      "An error occurred while retrieving the user details:",
-      error
-    );
+    console.error('An error occurred while retrieving the user details:', error)
   }
-};
+}
 
 export const registerPatient = async ({
   identificationDocument,
   ...patient
 }: RegisterUserParams) => {
   try {
-    let file;
+    let file
 
     if (identificationDocument) {
       const inputFile = InputFile.fromBuffer(
-        identificationDocument.get(
-          registerSchemaKeys.IDENTIFICATION_DOCUMENT
-        ) as Blob,
-        identificationDocument.get("fileName") as string
-      );
+        identificationDocument.get(registerSchemaKeys.IDENTIFICATION_DOCUMENT) as Blob,
+        identificationDocument.get('fileName') as string,
+      )
 
-      file = await storage.createFile(
-        config.APP_WRITE_STORAGE_BUCKET_ID,
-        ID.unique(),
-        inputFile
-      );
+      file = await storage.createFile(config.APP_WRITE_STORAGE_BUCKET_ID, ID.unique(), inputFile)
     }
 
     const newPatient = await databases.createDocument(
@@ -73,25 +64,25 @@ export const registerPatient = async ({
         identificationDocumentUrl: `${config.PUBLIC_ENDPOINT}/storage/buckets/${config.APP_WRITE_STORAGE_BUCKET_ID}/files/
         ${file?.$id}/view?project=${config.APP_WRITE_PROJECT_ID}`,
         ...patient,
-      }
-    );
+      },
+    )
 
-    return parseStringify(newPatient);
+    return parseStringify(newPatient)
   } catch (error) {
-    console.error("An error occurred while creating a new patient:", error);
+    console.error('An error occurred while creating a new patient:', error)
   }
-};
+}
 
 export const getPatient = async (userId: string) => {
   try {
     const patient = await databases.listDocuments(
       config.APP_WRITE_DB_ID,
       config.APP_WRITE_PATIENT_COLLECTION_ID,
-      [Query.equal("userId", userId)]
-    );
+      [Query.equal('userId', userId)],
+    )
 
-    return parseStringify(patient.documents[0]);
+    return parseStringify(patient.documents[0])
   } catch (error) {
-    console.error("An error occurred while retrieving a patient:", error);
+    console.error('An error occurred while retrieving a patient:', error)
   }
-};
+}

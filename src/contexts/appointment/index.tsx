@@ -1,34 +1,34 @@
-"use client";
+'use client'
 
 // IMPORTS -
-import { zodResolver } from "@hookform/resolvers/zod";
-import React, { useMemo } from "react";
-import { FormProvider, useForm, useFormContext } from "react-hook-form";
+import { zodResolver } from '@hookform/resolvers/zod'
+import React, { useMemo } from 'react'
+import { FormProvider, useForm, useFormContext } from 'react-hook-form'
 import {
   appointmentSchema,
   appointmentSchemaKeys,
   appointmentSchemaType,
-} from "@/schemas/appointment";
-import { ReactChildren } from "@/types/common";
+} from '@/schemas/appointment'
+import { ReactChildren } from '@/types/common'
 
 export const AppointmentFormProvider = ({ children }: ReactChildren) => {
   const formHook = useForm<appointmentSchemaType>({
     resolver: zodResolver(appointmentSchema),
     defaultValues: {
-      [appointmentSchemaKeys.DOCTOR]: "",
-      [appointmentSchemaKeys.ADDITIONAL_COMMENT]: "",
-      [appointmentSchemaKeys.APPOINTMENT_REASON]: "",
+      [appointmentSchemaKeys.DOCTOR]: '',
+      [appointmentSchemaKeys.ADDITIONAL_COMMENT]: '',
+      [appointmentSchemaKeys.APPOINTMENT_REASON]: '',
       [appointmentSchemaKeys.APPOINTMENT_DATE]: undefined,
-      [appointmentSchemaKeys.CANCEL_REASON]: "",
+      [appointmentSchemaKeys.CANCEL_REASON]: '',
     },
-    mode: "onChange",
-  });
+    mode: 'onChange',
+  })
 
-  return <FormProvider {...formHook}>{children}</FormProvider>;
-};
+  return <FormProvider {...formHook}>{children}</FormProvider>
+}
 
 export const useAppointmentForm = () => {
-  const formHook = useFormContext<appointmentSchemaType>();
+  const formHook = useFormContext<appointmentSchemaType>()
 
-  return useMemo(() => ({ formHook }), [formHook]);
-};
+  return useMemo(() => ({ formHook }), [formHook])
+}

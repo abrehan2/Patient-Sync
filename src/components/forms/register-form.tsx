@@ -1,35 +1,30 @@
-"use client";
+'use client'
 
 // IMPORTS -
-import { registerPatient } from "@/actions/patient";
-import { CustomFormField } from "@/components/generics/custom-form-field";
-import FileUpload from "@/components/generics/file-upload";
-import SubmitBtn from "@/components/generics/submit-btn";
-import { Form, FormControl } from "@/components/ui/form";
-import { Label } from "@/components/ui/label";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { SelectItem } from "@/components/ui/select";
-import {
-  Doctors,
-  formFieldTypes,
-  genderOptions,
-  identificationTypes,
-} from "@/constants/form";
-import { useRegisterForm } from "@/contexts/register";
-import { convertBufferToBlob } from "@/lib/utils";
-import { registerSchema, registerSchemaKeys } from "@/schemas/register";
-import { User } from "@/types/common";
-import { useRouter } from "next/navigation";
-import { toast } from "react-toastify";
-import { z } from "zod";
+import { registerPatient } from '@/actions/patient'
+import { CustomFormField } from '@/components/generics/custom-form-field'
+import FileUpload from '@/components/generics/file-upload'
+import SubmitBtn from '@/components/generics/submit-btn'
+import { Form, FormControl } from '@/components/ui/form'
+import { Label } from '@/components/ui/label'
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
+import { SelectItem } from '@/components/ui/select'
+import { Doctors, formFieldTypes, genderOptions, identificationTypes } from '@/constants/form'
+import { useRegisterForm } from '@/contexts/register'
+import { convertBufferToBlob } from '@/lib/utils'
+import { registerSchema, registerSchemaKeys } from '@/schemas/register'
+import { User } from '@/types/common'
+import { useRouter } from 'next/navigation'
+import { toast } from 'react-toastify'
+import { z } from 'zod'
 
 export const RegisterForm = ({ user }: { user: User }) => {
-  const { formHook } = useRegisterForm();
-  const router = useRouter();
+  const { formHook } = useRegisterForm()
+  const router = useRouter()
 
   const onSubmit = async (values: z.infer<typeof registerSchema>) => {
     try {
-      let formData = new FormData();
+      let formData = new FormData()
 
       if (
         values[registerSchemaKeys.IDENTIFICATION_DOCUMENT] &&
@@ -37,19 +32,16 @@ export const RegisterForm = ({ user }: { user: User }) => {
       ) {
         const blob = convertBufferToBlob(
           values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0],
-          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].type
-        );
+          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].type,
+        )
 
-        formData.append(registerSchemaKeys.IDENTIFICATION_DOCUMENT, blob);
+        formData.append(registerSchemaKeys.IDENTIFICATION_DOCUMENT, blob)
         formData.append(
           registerSchemaKeys.IDENTIFICATION_TYPE,
-          values[registerSchemaKeys.IDENTIFICATION_TYPE]
-        );
+          values[registerSchemaKeys.IDENTIFICATION_TYPE],
+        )
 
-        formData.append(
-          "fileName",
-          values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].name
-        );
+        formData.append('fileName', values[registerSchemaKeys.IDENTIFICATION_DOCUMENT][0].name)
       }
 
       const patientData = {
@@ -57,25 +49,22 @@ export const RegisterForm = ({ user }: { user: User }) => {
         userId: user.$id,
 
         identificationDocument: formData,
-      };
+      }
 
-      const patient = await registerPatient(patientData);
+      const patient = await registerPatient(patientData)
 
       if (patient) {
-        toast.success("Patient registered successfully.");
-        router.push(`/patients/${user.$id}/appointment`);
+        toast.success('Patient registered successfully.')
+        router.push(`/patients/${user.$id}/appointment`)
       }
     } catch (error) {
-      toast.error("An error occurred. Please try again.");
+      toast.error('An error occurred. Please try again.')
     }
-  };
+  }
 
   return (
     <Form {...formHook}>
-      <form
-        onSubmit={formHook.handleSubmit(onSubmit)}
-        className="space-y-6 flex-1"
-      >
+      <form onSubmit={formHook.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         <section className="space-y-4">
           <h1 className="header">Welcome!</h1>
           <p className="text-slate-500">Let us know more about yourself.</p>
@@ -203,9 +192,7 @@ export const RegisterForm = ({ user }: { user: User }) => {
         </div>
         <section className="space-y-6">
           <div className="mb-6 space-y-1">
-            <h2 className="text-slate-500 sub-header">
-              Identification and Verification
-            </h2>
+            <h2 className="text-slate-500 sub-header">Identification and Verification</h2>
           </div>
         </section>
 
@@ -246,5 +233,5 @@ export const RegisterForm = ({ user }: { user: User }) => {
         <SubmitBtn isValid={!formHook.formState.isValid}>Submit</SubmitBtn>
       </form>
     </Form>
-  );
-};
+  )
+}
