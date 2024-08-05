@@ -25,7 +25,7 @@ A healthcare application using Next.js that allows patients to easily register, 
 - Appwrite
 - Typescript
 - TailwindCSS
-- ShadCN
+- shadcn/ui
 
 - ## <a name="features">Features</a>
 
