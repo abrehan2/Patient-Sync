@@ -41,14 +41,6 @@ A healthcare application using Next.js that allows patients to easily register, 
 
 Follow these steps to set up the project locally on your machine.
 
-**Prerequisites**
-
-Make sure you have the following installed on your machine:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
 **Cloning the Repository**
 
 ```bash
@@ -66,7 +58,7 @@ npm install
 
 **Set Up Environment Variables**
 
-Create a new file named `.env.local` in the root of your project and add the following content:
+Create a new file named `.env` in the root of your project and add the following content:
 
 ```env
 # APP-WRITE
