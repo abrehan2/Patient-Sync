@@ -17,7 +17,9 @@
 
 ## <a name="introduction">Introduction</a>
 
-A healthcare application using Next.js that allows patients to easily register, book, and manage their appointments with doctors. The project aims to test Appwrite as the database.
+Patient Sync aims to simplify the patient registration and appointment booking process. It provides a seamless and responsive user experience, allowing patients to schedule and manage appointments with doctors effortlessly.
+
+The platform is currently being used by an NGO in Pakistan to record patient data daily, ensuring efficient and organized healthcare management.
 
 ## <a name="tech-stack">Tech Stack</a>
 
